@@ -1,6 +1,6 @@
 name: SkillGiver
 main: com.stealthyone.bukkit.McmmoSkillGiver.BasePlugin
-version: 1.1
+version: 1.2
 website: http://stealthyone.com/
 description: Simplifed commands for McMMO skill-related commands
 author: Stealth2800
