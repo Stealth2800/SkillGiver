@@ -14,10 +14,6 @@ public class PluginMethods {
 		this.plugin = plugin;
 	}
 	
-	public void addAllLevels(String playerName, int levels) {
-		this.addAllLevels(plugin.getServer().getPlayer(playerName), levels);
-	}
-	
 	public void addAllLevels(Player player, int levels) {
 		//ExperienceAPI.addLevel(player, "Excavation", levels);
 		//ExperienceAPI.addLevel(player, "Fishing", levels);

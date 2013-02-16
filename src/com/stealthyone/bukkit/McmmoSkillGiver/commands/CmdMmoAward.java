@@ -40,18 +40,19 @@ public class CmdMmoAward implements CommandExecutor {
 			
 			//Refine player name
 			List<Player> matchedPlayers = plugin.getServer().matchPlayer(args[0]);
-			String playerName = null;
+			Player player = null;
 			if (matchedPlayers.size() == 0) {
 				sender.sendMessage(ChatColor.RED + "Giving levels to offline player");
+				player = (Player) plugin.getServer().getOfflinePlayer(args[0]);
 			} else if (matchedPlayers.size() == 1) {
-				playerName = matchedPlayers.get(0).getName();
+				player = matchedPlayers.get(0);
 			} else {
 				sender.sendMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED + " matches multiple online players!");
 				return true;
 			}
 			
-			plugin.methods.addAllLevels(playerName, levels);
-			sender.sendMessage(ChatColor.AQUA + "Successfully gave " + playerName + " " + ChatColor.DARK_AQUA + levels + ChatColor.AQUA + " levels!");
+			plugin.methods.addAllLevels(player, levels);
+			sender.sendMessage(ChatColor.AQUA + "Successfully gave " + player.getName() + " " + ChatColor.DARK_AQUA + levels + ChatColor.AQUA + " levels!");
 			return true;
 		}
 	}
