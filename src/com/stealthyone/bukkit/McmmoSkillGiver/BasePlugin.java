@@ -28,14 +28,14 @@ public class BasePlugin extends JavaPlugin {
 		this.getCommand("skillgiver").setExecutor(new CmdSkillGiver(this));
 		this.getCommand("mmoaward").setExecutor(new CmdMmoAward(this));
 		
-		this.log.info(this.getName() + "v" + getPlVersion() + " enabled!");
+		this.log.info(this.getName() + " v" + getPlVersion() + " enabled!");
 	}
 	
 	@Override
 	public void onDisable() {
 		//Plugin disabled
 		
-		this.log.info(this.getName() + "v" + getPlVersion() + " disabled!");
+		this.log.info(this.getName() + " v" + getPlVersion() + " disabled!");
 	}
 	
 	public String getPlVersion() {
@@ -43,6 +43,6 @@ public class BasePlugin extends JavaPlugin {
 	}
 	
 	public boolean isDebug() {
-		return true;
+		return false;
 	}
 }
