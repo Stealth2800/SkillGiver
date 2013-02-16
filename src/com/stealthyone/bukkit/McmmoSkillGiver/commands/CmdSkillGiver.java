@@ -17,13 +17,18 @@ public class CmdSkillGiver implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		plugin.log.debug("label: " + label);
 		if (args.length == 0) {
+			if (!plugin.perm.checkPerm(sender, "skillgiver.version")) {
+				return true;
+			}
 			sender.sendMessage(ChatColor.AQUA + plugin.getName() + " v" + plugin.getPlVersion());
 			sender.sendMessage(ChatColor.DARK_AQUA + "By Stealth2800");
 			sender.sendMessage(ChatColor.RED + "Type /skillgiver help for help");
 			return true;
 		} else if (args[0].equalsIgnoreCase("help")) {
+			if (!plugin.perm.checkPerm(sender, "skillgiver.help")) {
+				return true;
+			}
 			sender.sendMessage(ChatColor.AQUA + "General Plugin Info - /skillgiver");
 			sender.sendMessage(ChatColor.AQUA + "Give All Levels to Player - /mmoaward <player> <number>");
 			return true;

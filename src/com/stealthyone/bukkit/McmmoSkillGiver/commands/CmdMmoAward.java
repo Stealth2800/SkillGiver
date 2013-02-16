@@ -1,11 +1,14 @@
 package com.stealthyone.bukkit.McmmoSkillGiver.commands;
 
+import java.util.List;
+
 import com.stealthyone.bukkit.McmmoSkillGiver.BasePlugin;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class CmdMmoAward implements CommandExecutor {
 
@@ -17,11 +20,38 @@ public class CmdMmoAward implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (!plugin.perm.checkPerm(sender, "skillgiver.award")) {
+			return true;
+		}
+		
 		if (args.length > 2) {
 			return false;
+		} else if (args.length == 0) {
+			return false;
 		} else {
-			plugin.methods.addAllLevels(args[0], Integer.valueOf(args[1]));
-			sender.sendMessage(ChatColor.AQUA + "Successfully gave " + args[0] + ChatColor.DARK_AQUA + Integer.valueOf(args[1]) + ChatColor.AQUA + " levels!");
+			//Check to see if levels is an integer
+			int levels;
+			try {
+				levels = Integer.valueOf(args[1]);
+			} catch (NumberFormatException e) {
+				sender.sendMessage(ChatColor.RED + "Levels must be an integer!");
+				return true;
+			}
+			
+			//Refine player name
+			List<Player> matchedPlayers = plugin.getServer().matchPlayer(args[0]);
+			String playerName = null;
+			if (matchedPlayers.size() == 0) {
+				sender.sendMessage(ChatColor.RED + "Giving levels to offline player");
+			} else if (matchedPlayers.size() == 1) {
+				playerName = matchedPlayers.get(0).getName();
+			} else {
+				sender.sendMessage(ChatColor.DARK_RED + args[0] + ChatColor.RED + " matches multiple online players!");
+				return true;
+			}
+			
+			plugin.methods.addAllLevels(playerName, levels);
+			sender.sendMessage(ChatColor.AQUA + "Successfully gave " + playerName + " " + ChatColor.DARK_AQUA + levels + ChatColor.AQUA + " levels!");
 			return true;
 		}
 	}
