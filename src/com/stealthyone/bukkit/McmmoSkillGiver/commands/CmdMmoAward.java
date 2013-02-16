@@ -5,6 +5,7 @@ import java.util.List;
 import com.stealthyone.bukkit.McmmoSkillGiver.BasePlugin;
 
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -40,10 +41,10 @@ public class CmdMmoAward implements CommandExecutor {
 			
 			//Refine player name
 			List<Player> matchedPlayers = plugin.getServer().matchPlayer(args[0]);
-			Player player = null;
+			OfflinePlayer player = null;
 			if (matchedPlayers.size() == 0) {
 				sender.sendMessage(ChatColor.RED + "Giving levels to offline player");
-				player = (Player) plugin.getServer().getOfflinePlayer(args[0]);
+				player = plugin.getServer().getOfflinePlayer(args[0]);
 			} else if (matchedPlayers.size() == 1) {
 				player = matchedPlayers.get(0);
 			} else {
@@ -51,7 +52,7 @@ public class CmdMmoAward implements CommandExecutor {
 				return true;
 			}
 			
-			plugin.methods.addAllLevels(player, levels);
+			plugin.methods.addAllLevels(player.getName(), levels);
 			sender.sendMessage(ChatColor.AQUA + "Successfully gave " + player.getName() + " " + ChatColor.DARK_AQUA + levels + ChatColor.AQUA + " levels!");
 			return true;
 		}

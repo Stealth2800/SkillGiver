@@ -2,7 +2,6 @@ package com.stealthyone.bukkit.McmmoSkillGiver;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 
 //import com.gmail.nossr50.api.ExperienceAPI;
 
@@ -14,7 +13,7 @@ public class PluginMethods {
 		this.plugin = plugin;
 	}
 	
-	public void addAllLevels(Player player, int levels) {
+	public void addAllLevels(String player, int levels) {
 		//ExperienceAPI.addLevel(player, "Excavation", levels);
 		//ExperienceAPI.addLevel(player, "Fishing", levels);
 		//ExperienceAPI.addLevel(player, "Herbalism", levels);
@@ -28,21 +27,21 @@ public class PluginMethods {
 		//ExperienceAPI.addLevel(player, "Acrobatics", levels);
 		//ExperienceAPI.addLevel(player, "Repair", levels);
 		
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Excavation " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Fishing " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Herbalism " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Mining " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Woodcutting " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Axes " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Archery " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Swords " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Taming " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Unarmed " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Acrobatics " + levels);
-		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player.getName() + " Repair " + levels);
-		
-		if (player.isOnline()) {
-			player.sendMessage(ChatColor.AQUA + "You were awarded " + ChatColor.DARK_AQUA + levels + ChatColor.AQUA + " levels in every mcMMO skill!");
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Excavation " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Fishing " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Herbalism " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Mining " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Woodcutting " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Axes " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Archery " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Swords " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Taming " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Unarmed " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Acrobatics " + levels);
+		Bukkit.dispatchCommand(plugin.getServer().getConsoleSender(), "addlevels " + player + " Repair " + levels);
+		 
+		if (plugin.getServer().getPlayer(player) != null) {
+			plugin.getServer().getPlayer(player).sendMessage(ChatColor.AQUA + "You were awarded " + ChatColor.DARK_AQUA + levels + ChatColor.AQUA + " levels in every mcMMO skill!");
 		}
 	}
 }
