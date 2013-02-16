@@ -15,7 +15,7 @@ public class LogManager {
 	
 	public void debug(String s) {
 		if (plugin.isDebug() == true) {
-			logger.log(Level.INFO, "[SkillGiver] " + s);
+			logger.log(Level.INFO, "[SkillGiver DEBUG] " + s);
 		}
 	}	
 	
